@@ -11,6 +11,7 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
+debugger
   return (
     <div className="app-wrapper">
     <BrowserRouter>                              {/* so this is the way routing work - you have to wrap everything in BrowserRouter */}
@@ -19,9 +20,9 @@ const App = (props) => {
       <div className="app-wrapper-content">
       <Routes> 
         
-      <Route path="/profile" element={<Profile posts={props.posts} />} />    // this is the way to invoke some function, when url will match with path attribute 
+      <Route path="/profile" element={<Profile state={props.state.profilePage}/>} />    // this is the way to invoke some function, when url will match with path attribute 
         
-      <Route path="/dialogs/*" element={<Dialogs  dialogs={props.dialogs}  messages={props.messages} />} /> 
+      <Route path="/dialogs/*" element={<Dialogs  state={props.state.dialogsPage}   />} /> 
 
         <Route path="/news" element={<News/>}/>
 
