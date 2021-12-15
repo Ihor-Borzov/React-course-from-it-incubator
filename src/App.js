@@ -10,23 +10,32 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app-wrapper">
     <BrowserRouter>                              {/* so this is the way routing work - you have to wrap everything in BrowserRouter */}
       <Header />
       <Navbar />
       <div className="app-wrapper-content">
-      <Routes>                                             {/* you have to wrap each Route component in the Routes tag*/}
-        <Route path="/dialogs/*" element={<Dialogs/>} />        {/* adding a star to the end we tell to our path: that all the passes after slash is yours and you should go further than just /dialogs. in a new version of react start uses instead the word "exact"! */}    
+      <Routes> 
+        
+      <Route path="/profile" element={<Profile posts={props.posts} />} />    // this is the way to invoke some function, when url will match with path attribute 
+        
+      <Route path="/dialogs/*" element={<Dialogs  dialogs={props.dialogs}  messages={props.messages} />} /> 
 
-        <Route path="/profile" element={<Profile/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-       
-        <Route path="/news" element={<News/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-     
-        <Route path="/Music" element={<Music/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-       
-        <Route path="/settings" element={<Settings/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
+        <Route path="/news" element={<News/>}/>
+
+        <Route path="/music" element={<Music/>}/>
+
+        <Route path="/settings" element={<Settings/>}/>
+
+
+
+
+
+
+
+        
         </Routes>
       </div>
       </BrowserRouter>

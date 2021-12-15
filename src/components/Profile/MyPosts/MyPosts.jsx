@@ -3,16 +3,10 @@ import s from "./MyPosts.module.css";
 import Post from './Post/Post';
 
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
 
-  let postsData =[ 
-    { id:1,  message:'Hi, how are you', likesCount:12},
-      {id:2, message:'it is my first post', likesCount:11},
-  ]
-
-let postsElements = postsData.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
-
+  let propspostsElements = props.posts.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
 
   return (
 
@@ -22,7 +16,7 @@ let postsElements = postsData.map(postObject => <Post message={postObject.messag
        <div> <button>Add post</button> </div>
         </div>
         <div className={s.posts}>
-     {postsElements}                               // and here this is the way you expose your pots 
+     {propspostsElements}                              {/* and this is the way to apply your props, sent from all the way index.js  */} 
         </div>
       </div>
 
