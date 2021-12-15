@@ -18,18 +18,14 @@ const App = () => {
       <Navbar />
       <div className="app-wrapper-content">
       <Routes>                                             {/* you have to wrap each Route component in the Routes tag*/}
-        <Route path="/dialogs" element={<Dialogs/>} />            
-        </Routes>
-        <Routes> 
+        <Route path="/dialogs/*" element={<Dialogs/>} />        {/* adding a star to the end we tell to our path: that all the passes after slash is yours and you should go further than just /dialogs. in a new version of react start uses instead the word "exact"! */}    
+
         <Route path="/profile" element={<Profile/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-        </Routes>
-        <Routes> 
+       
         <Route path="/news" element={<News/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-        </Routes>
-        <Routes> 
+     
         <Route path="/Music" element={<Music/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
-        </Routes>
-        <Routes> 
+       
         <Route path="/settings" element={<Settings/>} />      {/* pay attention in the path we do not put dot at the start, only slash  */}
         </Routes>
       </div>

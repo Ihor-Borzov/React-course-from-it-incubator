@@ -4,16 +4,25 @@ import Post from './Post/Post';
 
 
 const MyPosts = () => {
+
+
+  let postsData =[ 
+    { id:1,  message:'Hi, how are you', likesCount:12},
+      {id:2, message:'it is my first post', likesCount:11},
+  ]
+
+let postsElements = postsData.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
+
+
   return (
 
-      <div>my posts
-        <div><textarea></textarea>
-        <button>Add post</button>
+      <div className={s.postBlock}> <h3>my posts</h3>
+        <div>
+        <div>  <textarea></textarea> </div>
+       <div> <button>Add post</button> </div>
         </div>
         <div className={s.posts}>
-     <Post message="Hi, how are you?" likeCounter="15"/>  {/* this is the way we create props for our component, when we call the component we send him all those props via object */}
-     <Post message="it's my first post ?" likeCounter="20" />  {/* so each time we call our component - we send her the arguments like this and our component receives those arguments like keys and values in an object props. */}
-     <Post/>
+     {postsElements}                               // and here this is the way you expose your pots 
         </div>
       </div>
 

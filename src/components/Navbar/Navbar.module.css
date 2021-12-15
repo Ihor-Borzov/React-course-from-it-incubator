@@ -5,15 +5,15 @@
 padding:20px;
 }
 
-.item {
-  color:white;
-  text-decoration:none;
-}
 
 
 
-.active{
+.activeLink{
   color:red;
   text-decoration: none;
 }
 
+.notActiveLink{
+  color:white;
+  text-decoration:none;
+}
