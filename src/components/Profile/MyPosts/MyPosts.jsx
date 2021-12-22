@@ -8,6 +8,7 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
+ 
   let propspostsElements = props.state.postsData.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
 
 let newPostElement = React.createRef();   /* this is the way to create a link */
@@ -15,11 +16,13 @@ let newPostElement = React.createRef();   /* this is the way to create a link */
 
 
 let addPost =() =>{
+  debugger
  props.addPost();
 }
 
 
 let onPostChange =()=>{
+
   let text = newPostElement.current.value;
   props.updateNewPostText(text); 
   console.log(text);

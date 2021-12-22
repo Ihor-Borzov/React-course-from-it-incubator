@@ -1,15 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import state from './Redux/state';
-import { reranderEntireTree } from './render';
-
+import store from './Redux/state';
 import reportWebVitals from './reportWebVitals';
+import './index.css';
+import App from './App';
 
 
 
 
-reranderEntireTree(state);
+ let reranderEntireTree = (state) => {
+  ReactDOM.render(
+    <React.StrictMode>
+      <App state ={state}  addPost={store.addPost.bind(store)} updateNewPostText = {store.updateNewPostText.bind(store)}/>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+
+
+reranderEntireTree(store.getState());    /* state is imported to this file, so we just use it freely from import */
+
+store.subscribe(reranderEntireTree);  /* #1 rerenderEntireTree as a callback we send to state.js  in to the function subscribe.   rerenderEntireTree is a subscriber */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

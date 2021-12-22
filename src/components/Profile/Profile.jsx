@@ -6,7 +6,7 @@ import Post from './MyPosts/Post/Post';
 
 
 const Profile = (props)=>{
-
+  
 
 
 return(
