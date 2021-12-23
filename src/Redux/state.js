@@ -36,10 +36,16 @@ newPostText:'it-camasutra.com',
 
 
 },
-
+/* THESE TWO METHODS DO NOT CHANGE THE STATE */
 getState(){
   return this._state
 },
+
+subscribe(observer){    /* №2 function subscribe receives rerenderEntireTree function and assign it to empty function. now reranderEntireTree is actually capable to rerender the app    */
+  this._callSubscriber = observer;
+},
+/* //////////////////////// */
+
 
  _callSubscriber () {                           /* this is the way we create a method in an object,   this is our rerender entire tree */
   console.log("state changed")
@@ -63,9 +69,26 @@ updateNewPostText (newText){
   this._callSubscriber(this._state);
 },
 
- subscribe(observer){    /* №2 function subscribe receives rerenderEntireTree function and assign it to empty function. now reranderEntireTree is actually capable to rerender the app    */
-  this._callSubscriber = observer;
-},
+dispatch(action){
+if(action.type==="ADD-POST"){
+  let newPost={
+    id:5,
+    message:this._state.profilePage.newPostText,
+    likesCount:0
+  };
+  this._state.profilePage.postsData.push(newPost);
+  this._state.profilePage.newPostText = "";
+  this._callSubscriber(this._state);
+}
+
+else if(action.type==="UPDATE-NEW-POST-TEXT"){ 
+  this._state.profilePage.newPostText = action.newText;
+  this._callSubscriber(this._state);
+}
+
+
+
+}/* End dispatch method */
 
 }
 

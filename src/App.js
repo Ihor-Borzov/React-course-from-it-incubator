@@ -20,7 +20,7 @@ const App = (props) => {
       <div className="app-wrapper-content">
       <Routes> 
         
-      <Route path="/profile" element={<Profile state={props.state.profilePage}  addPost={props.addPost} updateNewPostText={props.updateNewPostText}/>}  />    // this is the way to invoke some function, when url will match with path attribute 
+      <Route path="/profile" element={<Profile state={props.state.profilePage}  dispatch={props.dispatch}/>}  />    // this is the way to invoke some function, when url will match with path attribute 
         
       <Route path="/dialogs/*" element={<Dialogs  state={props.state.dialogsPage}   />} /> 
 

@@ -16,15 +16,15 @@ let newPostElement = React.createRef();   /* this is the way to create a link */
 
 
 let addPost =() =>{
-  debugger
- props.addPost();
+
+ props.dispatch({type:'ADD-POST'});
 }
 
 
 let onPostChange =()=>{
 
   let text = newPostElement.current.value;
-  props.updateNewPostText(text); 
+  props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText:text}); 
   console.log(text);
 }
 
