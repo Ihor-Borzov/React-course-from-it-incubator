@@ -47,10 +47,11 @@ subscribe(observer){    /* №2 function subscribe receives rerenderEntireTree f
 /* //////////////////////// */
 
 
- _callSubscriber () {                           /* this is the way we create a method in an object,   this is our rerender entire tree */
+ _callSubscriber () {                           /* this is the way we create a method in an object,   this is our empty rerender entire tree */
   console.log("state changed")
 },
 
+/* 
  addPost () {
 
   let newPost={
@@ -68,6 +69,9 @@ updateNewPostText (newText){
   this._state.profilePage.newPostText = newText;
   this._callSubscriber(this._state);
 },
+ */
+
+
 
 dispatch(action){
 if(action.type==="ADD-POST"){

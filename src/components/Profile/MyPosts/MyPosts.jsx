@@ -7,6 +7,10 @@ import Post from './Post/Post';
 
 
 
+
+
+
+
 const MyPosts = (props) => {
  
   let propspostsElements = props.state.postsData.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
@@ -24,7 +28,8 @@ let addPost =() =>{
 let onPostChange =()=>{
 
   let text = newPostElement.current.value;
-  props.dispatch({type:'UPDATE-NEW-POST-TEXT', newText:text}); 
+  let action = {type:'UPDATE-NEW-POST-TEXT', newText:text}
+  props.dispatch(action); 
   console.log(text);
 }
 
