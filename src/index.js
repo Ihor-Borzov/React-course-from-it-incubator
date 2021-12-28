@@ -12,7 +12,7 @@ import App from './App';
  let reranderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state ={state}  dispatch={store.dispatch.bind(store)}/>
+      <App state ={state} store={store}  dispatch={store.dispatch.bind(store)}/>   {/* we want this keyword in dispatch stays the same, even when we call it from somwhere else, that is why we bind it to store. */}
     </React.StrictMode>,
     document.getElementById('root')
   );

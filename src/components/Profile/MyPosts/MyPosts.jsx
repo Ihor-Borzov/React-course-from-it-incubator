@@ -1,8 +1,7 @@
 import React from 'react';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/state';
 import s from "./MyPosts.module.css";
 import Post from './Post/Post';
-
-
 
 
 
@@ -21,15 +20,15 @@ let newPostElement = React.createRef();   /* this is the way to create a link */
 
 let addPost =() =>{
 
- props.dispatch({type:'ADD-POST'});
+ props.dispatch(addPostActionCreator());
 }
 
 
 let onPostChange =()=>{
 
   let text = newPostElement.current.value;
-  let action = {type:'UPDATE-NEW-POST-TEXT', newText:text}
-  props.dispatch(action); 
+ 
+  props.dispatch(updateNewPostTextActionCreator(text)); 
   console.log(text);
 }
 

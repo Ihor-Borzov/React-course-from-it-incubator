@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY"
+const SEND_MESSAGE = "SEND_MESSAGE"
+
+
 let store ={
 
   _state : {
@@ -30,6 +36,8 @@ newPostText:'it-camasutra.com',
                   {id:5,name:'Victor'},
                   {id:6,name:'Valera'},
                 ],
+
+                newMessageBody:""
 
     }
 
@@ -90,11 +98,67 @@ else if(action.type==="UPDATE-NEW-POST-TEXT"){
   this._callSubscriber(this._state);
 }
 
+else if(action.type === UPDATE_NEW_MESSAGE_BODY){
+  debugger
+  this._state.dialogsPage.newMessageBody = action.body;
+  this._callSubscriber(this._state);
 
+}
+
+else if(action.type === SEND_MESSAGE){
+ let body = this._state.dialogsPage.newMessageBody;
+ this._state.dialogsPage.newMessageBody ="";
+ this._state.dialogsPage.messagesData.push (
+   {id:6,  message:body}
+ ) 
+ this._callSubscriber(this._state);
+}
 
 }/* End dispatch method */
 
 }
+
+
+
+
+
+
+export let addPostActionCreator = () =>  ({ type:ADD_POST });     /*  this is the way to write arrow function with return in one line */ 
+
+
+
+
+export let updateNewPostTextActionCreator = (text) => {
+  return{
+   type:UPDATE_NEW_POST_TEXT,
+    newText:text
+  }
+}
+
+/* ////////////////////////////////// */
+
+export let sendMessageCreator = () => {
+  return{
+   type:SEND_MESSAGE,
+   
+  }
+}
+
+
+
+export let updateNewMessageBodyCreator = (body) => {
+  return{
+   type:UPDATE_NEW_MESSAGE_BODY,
+   body:body,
+  }
+}
+
+
+
+
+
+
+
 
 
 
