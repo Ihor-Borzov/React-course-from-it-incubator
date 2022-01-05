@@ -55,7 +55,7 @@ subscribe(observer){    /* №2 function subscribe receives rerenderEntireTree f
 /* //////////////////////// */
 
 
- _callSubscriber () {                           /* this is the way we create a method in an object,   this is our empty rerender entire tree */
+ _callSubscriber () {                           
   console.log("state changed")
 },
 
@@ -72,23 +72,6 @@ dispatch(action){
 }/* End dispatch method */
 
 }
-
-
-
-
-
-/* ////////////////////////////////// */
-
-
-
-
-
-
-
-
-
-
-
 
 
 export default store;

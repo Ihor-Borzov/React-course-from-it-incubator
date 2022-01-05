@@ -11,7 +11,7 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
-  
+
   return (
     <div className="app-wrapper">
     <BrowserRouter>                              {/* so this is the way routing work - you have to wrap everything in BrowserRouter */}

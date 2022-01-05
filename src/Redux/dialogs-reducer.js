@@ -3,7 +3,40 @@ const SEND_MESSAGE = "SEND_MESSAGE"
 
 
 
-const dialogsReducer = (state, action)=>{
+
+
+
+
+ /*  this is state to start the app - first run */ 
+let initialState = {                              
+  messagesData:[ 
+    { id:1,  message:'Hi'},
+      {id:2, message:'How is your It camasutra'},
+      {id:3, message:'Yo'},
+      {id:4, message:'Yo'},
+      {id:5, message:'Yo'},
+    ],
+
+    dialogsData:[ 
+        { id:1, name:'Dimych'}, 
+          {id:2,name:'Endry'},
+          {id:3,name:'Sveta'},
+          {id:4,name:'Sasha'},
+          {id:5,name:'Victor'},
+          {id:6,name:'Valera'},
+        ],
+
+        newMessageBody:""
+}
+
+
+
+
+
+
+
+
+const dialogsReducer = (state = initialState, action)=>{
    
 
     switch(action.type){

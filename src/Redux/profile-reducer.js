@@ -1,7 +1,23 @@
+
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 
- const profileReducer = (state, action)=>{
+
+
+ let initialState = {                                                 /*  this is state to start the app - first run. each reducer we initialized with special value */
+  postsData:[ 
+      { id:1,  message:'Hi, how are you', likesCount:12},
+        {id:2, message:'it is my first post', likesCount:11},
+    ],
+newPostText:'it-camasutra.com',
+}
+
+
+
+
+
+ const profileReducer = (state = initialState, action)=>{    /* here we specified: if state is not received - use initial state: this is state to start an app */
    
 
     switch(action.type){

@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import store from './Redux/state';
+/* import store from './Redux/store'; */       /*  this is our old store */
+import store from './Redux/redux-store';     /* we start using new store - redux-store */
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
@@ -22,10 +23,13 @@ import App from './App';
 
 reranderEntireTree(store.getState());    /* state is imported to this file, so we just use it freely from import */
 
-store.subscribe(reranderEntireTree);  /* #1 rerenderEntireTree as a callback we send to state.js  in to the function subscribe.   rerenderEntireTree is a subscriber */
 
+store.subscribe(()=>{                         
+  let state = store.getState();
+  reranderEntireTree(state)});  
+  
 
-
+/* so we subscribed on data change with subscribe, but redux works not like our previous state - redux does not return store when data changes: instead  (this._callSubscriber(this._state)) we have (this._callSubscriber()). so because (store.subscribe) is inner function of store library we can not change it from inside that she can send us new state each time we change data.So when we create our subscriber we have to send him callback function - so that function will get current state each time when subscriber been called  */
 
 
 
