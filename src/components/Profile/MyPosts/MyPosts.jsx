@@ -11,25 +11,21 @@ import Post from './Post/Post';
 
 
 const MyPosts = (props) => {
- 
-  let propspostsElements = props.state.postsData.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
+
+  let propspostsElements = props.posts.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
 
 let newPostElement = React.createRef();   /* this is the way to create a link */
 
 
-
-let addPost =() =>{
-
- props.dispatch(addPostActionCreator());
+/* event listeners we will call onSubjectHapend */
+let onAddPost =() =>{
+ props.addPost();
 }
 
 
 let onPostChange =()=>{
-
   let text = newPostElement.current.value;
- 
-  props.dispatch(updateNewPostTextActionCreator(text)); 
-  console.log(text);
+  props.updateNewPostText(text); 
 }
 
 
@@ -38,9 +34,9 @@ let onPostChange =()=>{
       <div className={s.postBlock}> <h3>my posts</h3>
         <div>
         <div> 
-           <textarea ref = {newPostElement} value={props.state.newPostText} onChange={onPostChange}/>
+           <textarea ref = {newPostElement} value={props.postsText} onChange={onPostChange}/>
         </div>   {/* and this is the way to attach the link to an element with the help of an attribute "ref" */}
-       <div> <button onClick={addPost}>Add post</button> </div>
+       <div> <button onClick={onAddPost}>Add post</button> </div>
         </div>
         <div className={s.posts}>
      {propspostsElements}                            

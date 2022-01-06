@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
@@ -20,9 +21,9 @@ const App = (props) => {
       <div className="app-wrapper-content">
       <Routes> 
         
-      <Route path="/profile" element={<Profile state={props.state.profilePage}  dispatch={props.dispatch}/>}  />    // this is the way to invoke some function, when url will match with path attribute 
+      <Route path="/profile" element={<Profile state={props.state.profilePage} store={props.store} dispatch={props.dispatch}/>}  />    // this is the way to invoke some function, when url will match with path attribute 
         
-      <Route path="/dialogs/*" element={<Dialogs store={props.store} state={props.state.dialogsPage}   />} /> 
+      <Route path="/dialogs/*" element={<DialogsContainer store={props.store}    />} /> 
 
         <Route path="/news" element={<News/>}/>
 
