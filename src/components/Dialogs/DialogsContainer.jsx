@@ -1,25 +1,49 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 
 
 
-/* #1 create a component container, let this container receive state */
-const DialogsContainer =(props)=>{
 
-    /* №2 create all the functions you presentational component wil need */
-let onSendMessageClick = ()=>{
-    props.store.dispatch(sendMessageCreator());
+
+
+/* those two function have to return an object and parameters of that object will be props.
+first function by default receives state. 
+first functions object will be data from state 
+second functions object will be callback functions*/
+
+let mapStateToProps =(state)=>{
+return{
+dialogsPage:state.dialogsPage
+}
 }
 
-let onNewMessageChange =(body)=>{
-props.store.dispatch(updateNewMessageBodyCreator(body));
+
+/* here this function has dispatch which binded to store, so you can call dispatch an do not worry about anything */
+let mapDispatchToProps =(dispatch)=>{
+    return{
+        updateNewMessageBody :(body)=>{dispatch(updateNewMessageBodyCreator(body));},
+        sendMessage : ()=>{dispatch(sendMessageCreator());}
+    }
 }
 
-/* #3 send all the functions your presentational component will use */
-    return (
-  <Dialogs  updateNewMessageBody={onNewMessageChange} sendMessage={onSendMessageClick}  dialogsPage={props.store.getState().dialogsPage} />
-    )
-}
+
+/* so connect returns new container component
+ we called function connect, connect returned something, the we called whatever returned connect
+here we component dialogs connected to store
+  How it works... 
+  function connect creates container component, inside that container component it renders presentational component
+  and sends to presentational component attributes what sits in those two objects (as keys) from functions f1 and f2
+so in the Dialogs you will get props.a props.b props.c
+
+
+*/
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);    
+
+
+
+
+
 
 export default DialogsContainer;

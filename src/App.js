@@ -21,9 +21,9 @@ const App = (props) => {
       <div className="app-wrapper-content">
       <Routes> 
         
-      <Route path="/profile" element={<Profile state={props.state.profilePage} store={props.store} dispatch={props.dispatch}/>}  />    // this is the way to invoke some function, when url will match with path attribute 
+      <Route path="/profile" element={<Profile />}  />    // this is the way to invoke some function, when url will match with path attribute 
         
-      <Route path="/dialogs/*" element={<DialogsContainer store={props.store}    />} /> 
+      <Route path="/dialogs/*" element={<DialogsContainer  />} /> 
 
         <Route path="/news" element={<News/>}/>
 

@@ -1,28 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/profile-reducer';
+
 import MyPosts from './MyPosts';
 import s from "./MyPosts.module.css";  /* container component does not even need his own css */
 
 
 
-const MyPostsContainer = (props) => {
- 
-  let state = props.store.getState();
 
-let addPost =() =>{
- props.store.dispatch(addPostActionCreator());     /* here we use callback to get our action object */
+
+
+
+let mapStateToProps =(state)=> {
+return{
+posts:state.profilePage.postsData,
+postsText:state.profilePage.newPostText,
+}
 }
 
-/* we created a function in the container component and just send this function to presentational component as a .... in a props */
-let onPostChange =(text)=>{
-  let action = updateNewPostTextActionCreator(text);
-  props.store.dispatch(action);
+let mapDispatchToProps = (dispatch)=>{
+return{
+  updateNewPostText:(text)=>{let action = updateNewPostTextActionCreator(text); dispatch(action);},
+  addPost:()=>{dispatch(addPostActionCreator());}
+}
 }
 
 
-  return (
-<MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={state.profilePage.postsData} postsText = {state.profilePage.newPostText}/>
-  )
-}
+let MyPostsContainer = connect(mapStateToProps,mapDispatchToProps)(MyPosts);
+
 
 export default MyPostsContainer;
+
+
+

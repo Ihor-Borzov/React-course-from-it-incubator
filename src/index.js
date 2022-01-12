@@ -6,19 +6,25 @@ import store from './Redux/redux-store';     /* we start using new store - redux
 import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';   /* this is new Provider for store from react-redux library */
+/* import StoreContext, { Provider } from './storeContext'; */   /*  that was my old provider for store from Redux */
 
 
 
 
  let reranderEntireTree = (state) => {
-  ReactDOM.render(
+  ReactDOM.render( 
     <React.StrictMode>
-      <App state ={state} store={store}  dispatch={store.dispatch.bind(store)}/>   {/* we want this keyword in dispatch stays the same, even when we call it from somwhere else, that is why we bind it to store. */}
+      <Provider store={store}>                    {/*#2 wrapp App in StoreContext.Provider and set the value attribute to ={store} */}
+      <App /> 
+      </Provider>
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
+
+/* state ={state} store={store}  dispatch={store.dispatch.bind(store)} */
 
 
 reranderEntireTree(store.getState());    /* state is imported to this file, so we just use it freely from import */
