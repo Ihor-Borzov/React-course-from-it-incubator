@@ -40,16 +40,19 @@ const dialogsReducer = (state = initialState, action)=>{
    
 
     switch(action.type){
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
+        case UPDATE_NEW_MESSAGE_BODY:{
+          let stateCopy = {...state};
+          stateCopy.newMessageBody = action.body;
+            return stateCopy;
+    }
 
             case SEND_MESSAGE:
-                let body = state.newMessageBody;
-       state.newMessageBody ="";
-       state.messagesData.push (
-         {id:6,  message:body});
-         return state;
+              let stateCopy = {...state};
+              stateCopy.messagesData = [...state.messagesData];  /* #1   provide square brackets if you create an array - be careful!!! */
+                let body = stateCopy.newMessageBody;
+       stateCopy.newMessageBody ="";
+       stateCopy.messagesData.push({id:0,  message:body});      /*#2 pay attention the method push works only with array  and will not work with an object */
+         return stateCopy;
          default:
              return state;
 

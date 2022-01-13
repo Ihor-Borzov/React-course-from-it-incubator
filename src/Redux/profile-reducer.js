@@ -17,23 +17,27 @@ newPostText:'it-camasutra.com',
 
 
 
- const profileReducer = (state = initialState, action)=>{    /* here we specified: if state is not received - use initial state: this is state to start an app */
+ const profileReducer = (state = initialState, action)=>{   
    
 
     switch(action.type){
-        case ADD_POST:
+        case ADD_POST:{
             let newPost={
                 id:5,
-                message:state.newPostText,        /* we do not use this in reducers, because we perform our functions taking data from receiving argument (state) and this argument is our profile-reducer object */
+                message:state.newPostText,       
                 likesCount:0
               };
-              state.postsData.push(newPost);
-              state.newPostText = "";
-              return state;
-
+              let stateCopy = {...state};                       /* this is  the way we duplicate our state with spread operator */
+              stateCopy.postsData = [...state.postsData];                   /* this is  the way we duplicate our state.array with spread operator, why ?   because when we duplicating an object with spread operator we duplicating only primitives, but arrays and objects will copy only the links - so when you change them in new object you will get those changes in the old object  */
+              stateCopy.postsData.push(newPost);
+              stateCopy.newPostText = "";
+              return stateCopy;
+            }
+            
               case UPDATE_NEW_POST_TEXT:
-                state.newPostText = action.newText;
-                return state;
+                let stateCopy = {...state};
+                stateCopy.newPostText = action.newText;
+                return stateCopy;
                 
                 default:                    /* this is default case - will work when no cases matched */
                     return state;
