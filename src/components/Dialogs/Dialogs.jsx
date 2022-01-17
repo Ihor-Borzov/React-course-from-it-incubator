@@ -9,10 +9,11 @@ import Message from './Message/Message';
 const  Dialogs =(props)=>{
 
     let state = props.dialogsPage;
-                     
-    let dialogsElements = state.dialogsData.map (dialog =><DialogItem name={dialog.name} id={dialog.id}/>)
+
+    /* why did we add key property: to remove warnings from console "Each child in an array or iterator should have a unique "key" prop"*/                 
+    let dialogsElements = state.dialogsData.map (dialog =><DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>)
        
-let messagesElements = state.messagesData.map(messageObject=> <Message message={messageObject.message}/> )
+let messagesElements = state.messagesData.map(messageObject=> <Message message={messageObject.message} key={messageObject.id}/> )
 
 let newMessageBody = state.newMessageBody;
 

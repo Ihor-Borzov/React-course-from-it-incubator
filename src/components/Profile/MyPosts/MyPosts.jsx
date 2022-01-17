@@ -12,7 +12,9 @@ import Post from './Post/Post';
 
 const MyPosts = (props) => {
 
-  let propspostsElements = props.posts.map(postObject => <Post message={postObject.message} likeCounter={postObject.likesCount}/> )
+
+  /* I added +1 to key just to make it somehow different */
+  let propspostsElements = props.posts.map(postObject => <Post message={postObject.message} key={postObject.id+"1"} likeCounter={postObject.likesCount}/> )
 
 let newPostElement = React.createRef();   /* this is the way to create a link */
 

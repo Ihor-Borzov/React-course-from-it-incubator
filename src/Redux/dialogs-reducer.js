@@ -37,23 +37,22 @@ let initialState = {
 
 
 const dialogsReducer = (state = initialState, action)=>{
-   
-
+   let stateCopy;
     switch(action.type){
-        case UPDATE_NEW_MESSAGE_BODY:{
-          let stateCopy = {...state};
-          stateCopy.newMessageBody = action.body;
-            return stateCopy;
-    }
+        case UPDATE_NEW_MESSAGE_BODY:
+          return {...state, newMessageBody:action.body };     /* create the object fill it with old vales add new and update new values and right away return it! */
+
+
+    
 
             case SEND_MESSAGE:
-              let stateCopy = {...state};
-              stateCopy.messagesData = [...state.messagesData];  /* #1   provide square brackets if you create an array - be careful!!! */
-                let body = stateCopy.newMessageBody;
-       stateCopy.newMessageBody ="";
-       stateCopy.messagesData.push({id:0,  message:body});      /*#2 pay attention the method push works only with array  and will not work with an object */
-         return stateCopy;
-         default:
+             
+              let body = state.newMessageBody;
+              return {...state,
+                newMessageBody:'',
+                messagesData:[...state.messagesData, {id:0,  message:body}]};              /*  we are simply saying: hey stateCopy you have messages object,but this object is just a link to the object from state now, can you actually reassign it to a real object!  */
+         
+                default:
              return state;
 
     }
