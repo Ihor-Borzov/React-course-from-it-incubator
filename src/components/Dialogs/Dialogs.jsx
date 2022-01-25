@@ -7,7 +7,7 @@ import Message from './Message/Message';
 
 
 const  Dialogs =(props)=>{
-
+debugger;
     let state = props.dialogsPage;
 
     /* why did we add key property: to remove warnings from console "Each child in an array or iterator should have a unique "key" prop"*/                 
@@ -16,7 +16,7 @@ const  Dialogs =(props)=>{
 let messagesElements = state.messagesData.map(messageObject=> <Message message={messageObject.message} key={messageObject.id}/> )
 
 let newMessageBody = state.newMessageBody;
-
+debugger;
 
 
 let onSendMessageClick = ()=>{

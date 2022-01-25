@@ -10,6 +10,8 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
+import UsersContainer from './components/users/UsersContainer';
+
 const App = (props) => {
 
   return (
@@ -32,10 +34,7 @@ const App = (props) => {
 
 
 
-
-
-
-
+        <Route path="/users"  element={<UsersContainer/>}        />
         
         </Routes>
       </div>
