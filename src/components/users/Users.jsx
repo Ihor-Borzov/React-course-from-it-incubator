@@ -1,21 +1,31 @@
+import * as axios from "axios"
 import React from "react"
 import styles from './users.module.css'
+import userPhoto from '../../assets/images/user.jpg'    /* this is the way we imported a picture */
+
 
 let Users = (props)=>{
 
     /* this is the way we prevent this function to run infinite loops */
-    if(props.users.length===0){
-    props.setUsers( [
-        { id:1, photoUrl:"https://i.pinimg.com/550x/17/e2/4a/17e24aab881fe2950c6121d729b859a3.jpg", followed:false, fullName:"Dimitry", status:"I am a boss", location:{city:"Minsk", country:"belarus"}},
-      { id:2,  photoUrl:"https://i.pinimg.com/550x/17/e2/4a/17e24aab881fe2950c6121d729b859a3.jpg", followed:true, fullName:"Sahsa", status:"I am a boss", location:{city:"Moscow", country:"Russia"}},
-      { id:3,  photoUrl:"https://i.pinimg.com/550x/17/e2/4a/17e24aab881fe2950c6121d729b859a3.jpg", followed:false, fullName:"Andrew", status:"I am a boss", location:{city:"Kyiv", country:"Ucraine"}},
-    ])}
+
+     if(props.users.length===0){
+axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+
+    props.setUsers(response.data.items);
+
+});
+} 
+
+
+
+
 
     return <div>
+        <span>bamboleilo</span>
 {props.users.map(u=> <div key={u.id}>              {/*we simply built a function with the help of map we are saing - we want to map through our users array, and each objects should build his own div element with everything what is inside */}
     <span>
         <div>
-            <img src={u.photoUrl} className={styles.usersPhoto}/>
+            <img src={u.photos.small != null ? u.photos.small :userPhoto} className={styles.usersPhoto}/>       {/* HERE is another trinarnye virazenie */}
             </div>
         <div>
             {u.followed
@@ -27,12 +37,12 @@ let Users = (props)=>{
 
     <span>
         <span>
-            <div>{u.fullName}</div>
+            <div>{u.name}</div>
             <div>{u.status}</div>
         </span>
         <span>
-        <div>{u.location.country}</div>
-            <div>{u.location.city}</div>
+        <div>{"u.location.country"}</div>
+            <div>{"u.location.city"}</div>
        
         </span>
     </span>

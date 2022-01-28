@@ -50,8 +50,8 @@ return {                                    /*  we opened and copied state, in t
           }
 
           case SET_USERS:
-            return {...state,
-            users:[...state.users, ...action.users]}    /*  this is the way we will glue two objects in to one with spread operator.  we will add new objects to the old array of objects */
+
+            return {...state, users:[/* ...state.users,  */...action.users]}    /*  this is the way we will glue two objects in to one with spread operator.  we will add new objects to the old array of objects */
 
                 default:                   
                     return state;
