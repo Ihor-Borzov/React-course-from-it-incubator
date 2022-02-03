@@ -14,6 +14,7 @@ return(
   <div className={s.item}><Link to="/news" className= { navData => navData.isActive ? s.activeLink : s.notActiveLink } >News</Link></div>
   <div className={s.item}><Link to="/music" className= { navData => navData.isActive ? s.activeLink : s.notActiveLink } >Music</Link></div>
   <div className={s.item}><Link to="/settings" className= { navData => navData.isActive ? s.activeLink : s.notActiveLink } >Settings</Link></div>
+  <div className={s.item}><Link to="/users" className= { navData => navData.isActive ? s.activeLink : s.notActiveLink } >Users</Link></div>
 </nav>
 )    
 }
