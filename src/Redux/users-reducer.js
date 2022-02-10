@@ -10,6 +10,8 @@
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE="SET_CURRENT_PAGE"
+const SET_TOTAL_USERS_COUNT="SET_TOTAL_USERS_COUNT"
 
 
  let initialState = {                                                 /*  this is state to start the app - first run. each reducer we initialized with special value */
@@ -17,6 +19,10 @@ const SET_USERS = "SET_USERS";
 
      
     ],
+     
+    pageSize:5,
+    totalUserCount:1,
+    currentPage:3
 }
 
 
@@ -50,8 +56,19 @@ return {                                    /*  we opened and copied state, in t
           }
 
           case SET_USERS:
+            return {...state, users:action.users}   /* perexateraty svoy massive */
+           /*  return {...state, users:[...action.users]}  */   /*  this is the way we will glue two objects in to one with spread operator.  we will add new objects to the old array of objects */
 
-            return {...state, users:[/* ...state.users,  */...action.users]}    /*  this is the way we will glue two objects in to one with spread operator.  we will add new objects to the old array of objects */
+          case SET_CURRENT_PAGE:
+            return{...state,
+    currentPage: action.currentPage,
+            }
+
+            case SET_TOTAL_USERS_COUNT:
+              return{...state,
+                totalUserCount: action.totALaUsersCount
+              }
+            
 
                 default:                   
                     return state;
@@ -72,6 +89,11 @@ export let setUsersAC = (users) => {     /* we going to be taking users from a s
    users
   }
 }
+
+export let setCurrentPageAC=(currentPage)=>({type:SET_CURRENT_PAGE, currentPage})
+
+
+export let setTotalUsersCountAC=(totALaUsersCount)=>({type:SET_TOTAL_USERS_COUNT, totALaUsersCount})
 
 
 

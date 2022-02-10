@@ -1,3 +1,12 @@
 .usersPhoto{
   width:100px;
 }
+
+.selectedPage{
+  font-weight:bold;
+ 
+}
+
+.pages span{
+  cursor:pointer;
+}

@@ -5,25 +5,51 @@ import userPhoto from '../../assets/images/user.jpg'    /* this is the way we im
 
 
 class Users extends React.Component {
-
+    
+/* 
 constructor(props){
-    super(props);    // first of all let's send props to parent's component (React.Component) constructor method
-
-    /*then we can do server request, because constructor invokes only when component first time born, and each next rerender only method render() invokes   */
-alert("new");
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-        
-            this.props.setUsers(response.data.items)})
-        }
+    super(props);    
+        }         WE DO NOT NEED CONSTRUCTOR ANYMORE, BECAUSE WE DO NOT DO ANYTHING EXTRA IN IT, cONSTRUCTOR WILL AUTOMATICALLY CREATE HIMSELF AND SEND HIS PROPS TO HIS SUPER*/
 
 
+componentDidMount(){
+        /* we changed quotes to be able to write with variables */
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+    
+        this.props.setUsers(response.data.items)})
+}
+
+
+onPageChanged = (pageNumber)=>{
+    this.props.setCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+    .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalUsersCount(response.data.totalCount/100);  /* i divide on 100, because it retrieve to many users */
+    })
+}
 
 
 
     render(){
-        return <div>
-        <button onClick={this.getUsers}>get users</button>
-        <span>bamboleilo</span>
+        let pagesCount = Math.ceil( this.props.totalUsersCount/this.props.pageSize)    /* math.ceil  rounds digit to a bigger integer */
+
+let pages = []
+
+for(let i=1; i<=pagesCount; i++){
+pages.push(i);
+}
+
+        return <div> 
+            <div className={styles.pages} >
+                
+                {pages.map(p=>{
+                   return <span onClick={(e)=>{this.onPageChanged(p) }} className={this.props.currentPage === p && styles.selectedPage}>{`${p}. `}</span>    /* if this particular page from the array pages equals to the currentPage, then make this span className=... */
+                })}
+
+            </div>
+
+
 {this.props.users.map(u=> <div key={u.id}>              {/*we simply built a function with the help of map we are saing - we want to map through our users array, and each objects should build his own div element with everything what is inside */}
     <span>
         <div>
