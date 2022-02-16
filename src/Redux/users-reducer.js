@@ -12,6 +12,7 @@ const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE="SET_CURRENT_PAGE"
 const SET_TOTAL_USERS_COUNT="SET_TOTAL_USERS_COUNT"
+const TOGGLE_IS_FETCHING="TOGGLE_IS_FETCHING"
 
 
  let initialState = {                                                 /*  this is state to start the app - first run. each reducer we initialized with special value */
@@ -22,7 +23,8 @@ const SET_TOTAL_USERS_COUNT="SET_TOTAL_USERS_COUNT"
      
     pageSize:5,
     totalUserCount:1,
-    currentPage:3
+    currentPage:3,
+    isFetching:false
 }
 
 
@@ -68,6 +70,12 @@ return {                                    /*  we opened and copied state, in t
               return{...state,
                 totalUserCount: action.totALaUsersCount
               }
+
+
+            case TOGGLE_IS_FETCHING:
+              return{...state,
+                isFetching: action.isFetching
+              }
             
 
                 default:                   
@@ -94,6 +102,8 @@ export let setCurrentPageAC=(currentPage)=>({type:SET_CURRENT_PAGE, currentPage}
 
 
 export let setTotalUsersCountAC=(totALaUsersCount)=>({type:SET_TOTAL_USERS_COUNT, totALaUsersCount})
+
+export let toggleIsFetchingAC=(isFetching)=>({type:TOGGLE_IS_FETCHING, isFetching})
 
 
 
