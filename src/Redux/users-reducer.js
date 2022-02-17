@@ -87,23 +87,23 @@ return {                                    /*  we opened and copied state, in t
 
 
 
-export let followAC = (userId) =>  ({ type:FOLLOW, userId });     /*AC is an action creator;  this is the way to write arrow function with return in one line */ 
+export let follow = (userId) =>  ({ type:FOLLOW, userId });     /*AC is an action creator;  this is the way to write arrow function with return in one line */ 
 
-export let unfollowAC = (userId) =>  ({ type:UNFOLLOW, userId });
+export let unfollow = (userId) =>  ({ type:UNFOLLOW, userId });
 
-export let setUsersAC = (users) => {     /* we going to be taking users from a server and set them in to state */
+export let setUsers = (users) => {     /* we going to be taking users from a server and set them in to state */
   return{
    type:SET_USERS,
    users
   }
 }
 
-export let setCurrentPageAC=(currentPage)=>({type:SET_CURRENT_PAGE, currentPage})
+export let setCurrentPage=(currentPage)=>({type:SET_CURRENT_PAGE, currentPage})
 
 
-export let setTotalUsersCountAC=(totALaUsersCount)=>({type:SET_TOTAL_USERS_COUNT, totALaUsersCount})
+export let setTotalUsersCount=(totALaUsersCount)=>({type:SET_TOTAL_USERS_COUNT, totALaUsersCount})
 
-export let toggleIsFetchingAC=(isFetching)=>({type:TOGGLE_IS_FETCHING, isFetching})
+export let toggleIsFetching=(isFetching)=>({type:TOGGLE_IS_FETCHING, isFetching})
 
 
 

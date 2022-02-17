@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from "../../Redux/users-reducer"
+import { follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "../../Redux/users-reducer"
 import * as axios from "axios"
 import Users from "./Users"
 import preLoaderGif from "../../assets/images/loader.gif"
@@ -48,7 +48,7 @@ class UsersContainer extends React.Component {
               onPageChanged = {this.onPageChanged}
               users = {this.props.users} 
               follow ={this.props.follow}
-              unFollow={this.props.unFollow}
+              unfollow={this.props.unfollow}
  />
 </>
     )
@@ -71,30 +71,13 @@ let mapStateToProps = (state)=>{
     }
 }
 
-let mapDispatchToProps = (dispatch)=>{
-return{
-follow:(userid)=>{dispatch(followAC(userid))},
 
 
-unFollow:(userid)=>{dispatch(unfollowAC(userid))},
 
-
-setUsers:(users)=>dispatch(setUsersAC(users)),
-
-setCurrentPage:(pageNumber)=>{
-    dispatch(setCurrentPageAC(pageNumber))},
-
-    setTotalUsersCount:(totalCount)=>{
-    dispatch(setTotalUsersCountAC(totalCount))},
-
-toggleIsFetching:(isFetching)=>{dispatch(toggleIsFetchingAC(isFetching))}
-
-
+export default connect(mapStateToProps,
+     {
+/* connect has the links to Action creators */
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount,
+toggleIsFetching,
 }
-}
-
-
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+)(UsersContainer);
