@@ -8,6 +8,7 @@ import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileInfo/ProfileContainer';
 import Settings from './components/Settings/Settings';
 
 import UsersContainer from './components/users/UsersContainer';
@@ -22,7 +23,7 @@ const App = (props) => {
       <div className="app-wrapper-content">
       <Routes> 
         
-      <Route path="/profile" element={<Profile />}  />    // this is the way to invoke some function, when url will match with path attribute 
+      <Route path="/profile/*" element={<ProfileContainer />}  />    // this is the way to invoke some function, when url will match with path attribute 
         
       <Route path="/dialogs/*" element={<DialogsContainer  />} /> 
 

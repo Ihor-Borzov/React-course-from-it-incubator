@@ -21,7 +21,8 @@ let store = createStore(reducers);       /* to create new store, also all reduce
 
 
 
-
+window.store = store   /* in the object window we created a new variable and named it store, also this variable we assigned to our store
+now we can get our store whenever we are */
 
 
 export default store;

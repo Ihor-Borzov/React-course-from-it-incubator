@@ -2,6 +2,7 @@
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 
 
@@ -11,6 +12,7 @@ const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
         {id:2, message:'it is my first post', likesCount:11},
     ],
 newPostText:'it-camasutra.com',
+profile: null
 }
 
 
@@ -39,6 +41,13 @@ newPostText:'it-camasutra.com',
                 return{...state, newPostText:action.newText};
            /*      stateCopy.newPostText = action.newText;
                 return stateCopy; */
+
+
+                case SET_USER_PROFILE:
+                  return{
+                    ...state,
+                    profile: action.profile
+                  }
                 
                 default:                    /* this is default case - will work when no cases matched */
                     return state;
@@ -56,6 +65,14 @@ export let updateNewPostTextActionCreator = (text) => {
   return{
    type:UPDATE_NEW_POST_TEXT,
     newText:text
+  }
+}
+
+
+export let setUserProfile = (profile) => {
+  return{
+   type:SET_USER_PROFILE,
+   profile
   }
 }
 

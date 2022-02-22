@@ -1,6 +1,7 @@
 import React from "react"
 import styles from './users.module.css'
 import userPhoto from '../../assets/images/user.jpg'    /* this is the way we imported a picture */
+import { NavLink } from "react-router-dom"
 
 
 
@@ -32,7 +33,9 @@ return(
 {props.users.map(u=> <div key={u.id}>              {/*we simply built a function with the help of map we are saing - we want to map through our users array, and each objects should build his own div element with everything what is inside */}
 <span>
 <div>
+<NavLink  to={'/profile/' + u.id }   >
 <img src={u.photos.small != null ? u.photos.small :userPhoto} className={styles.usersPhoto}/>       {/* HERE is another trinarnye virazenie */}
+</NavLink>
 </div>
 <div>
 {u.followed

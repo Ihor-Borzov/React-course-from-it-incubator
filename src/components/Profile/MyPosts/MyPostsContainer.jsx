@@ -4,7 +4,7 @@ import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../R
 
 import MyPosts from './MyPosts';
 import s from "./MyPosts.module.css";  /* container component does not even need his own css */
-
+import * as axios from "axios"
 
 
 
