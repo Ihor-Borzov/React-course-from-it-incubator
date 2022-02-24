@@ -51,7 +51,7 @@ const App = (props) => {
 export default App;
 
 
-
+/* path="/profile/:userId?/*" */
 
 
 //https://i.pinimg.com/originals/fb/79/82/fb79829be36f2c9a82035e26182558e3.jpg
