@@ -21,13 +21,13 @@ if(!props.profile){
 
             <div className={s.descriptionBlock}>
               
-                  <img src= {props.profile.photos.large != null ? props.profile.photos.large :userPhoto } ></img>
+                  <img className={s.profilePick} src= {props.profile.photos.large != null ? props.profile.photos.large :userPhoto } ></img>
                   
                   
-                  <img src={props.profile.lookingForAJob ?
+                  <img className={s.isLokkingForWork} src={props.profile.lookingForAJob ?
                   "https://perfectstrangersofnyc.com/wp-content/uploads/2018/02/moving-to-nyc-without-a-job.jpg"
                 : "https://i.natgeofe.com/k/d987f7b2-1895-4978-9216-3f365ea51a34/ladybug-daisy_4x3.jpg"
-                }     style={{width:'200px;'}}></img>
+                }></img>
 
                 </div>
 

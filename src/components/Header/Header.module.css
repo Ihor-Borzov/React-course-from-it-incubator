@@ -8,3 +8,13 @@
   height:100%;
 
 }
+
+.loginBlock{
+  float:right;
+  margin-right:30px;
+}
+
+.loginBlock a{
+color:white;
+
+}

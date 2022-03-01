@@ -17,7 +17,7 @@ class ProfileContainer extends React.Component{
 
      /* all the methods of life sycle you should do in componentDidMount function */
     componentDidMount(){
-        debugger
+
         let userId
         if(!this.props.match){userId=2}
         else{userId = this.props.match.params.userId} 
