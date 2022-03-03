@@ -5,6 +5,7 @@ import * as axios from "axios"
 import Users from "./Users"
 import preLoaderGif from "../../assets/images/loader.gif"
 import Preloader from "../common/preloader/Preloader"
+import { getUsers, usersAPI } from "../../api/api"
 
 
 class UsersContainer extends React.Component {
@@ -17,23 +18,22 @@ class UsersContainer extends React.Component {
     
     componentDidMount(){
         this.props.toggleIsFetching(true);
-            /* we changed quotes to be able to write with variables */
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
-        {withCredentials:true})
-        .then(response => {
+            /* this is the way to make a server request through the function */
+ usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items)})
+            this.props.setUsers(data.items)
+            this.props.setTotalUsersCount(data.totalCount/100);
+        })
     }
     
     
     onPageChanged = (pageNumber)=>{
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,{withCredentials:true} )
-        .then(response => {
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount/100);  /* i divide on 100, because it retrieve to many users */
+            this.props.setUsers(data.items);
+            this.props.setTotalUsersCount(data.totalCount/100);  /* i divide on 100, because it retrieve to many users */
         })
     }
     

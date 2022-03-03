@@ -12,11 +12,12 @@ import { Provider } from 'react-redux';   /* this is new Provider for store from
 
 
 /*############# EVERY LESSON SUMMARY:
-LESSON #51
-installed axios library: npm install axios --save
-import axios in to users.jsx component
-made first server request with axios.get().then()   at users.jsx component
-add a folder with a picture and imported that picture to users.jsx
+LESSON#63
+- create api folder. create api.js file in that folder
+- from UserContainer class=> method componentDidMount take axios request and move it to api.js
+- in the api.js create a function (call it getUsers) which will be returning axios request, export this function
+- import getUsers function to UsersContainer and call method then     getUsers.then
+- from the place where you invoke getUsers(parameters) send him all needed parameters 
 */
 
 
@@ -39,9 +40,15 @@ add a folder with a picture and imported that picture to users.jsx
 reportWebVitals();
 
 
+/*
 
+LESSON #51
+installed axios library: npm install axios --save
+import axios in to users.jsx component
+made first server request with axios.get().then()   at users.jsx component
+add a folder with a picture and imported that picture to users.jsx
 
-/*lesson#47 we removed rerenderEntireTree subscriber function on state change, 
+lesson#47 we removed rerenderEntireTree subscriber function on state change, 
 and we removed invoking the function rerenderEntireTree. so now we could remove actual function rerenderEntireTree
 and live only what was inside it, because only at the start this code will be rendering our app, we do not 
 need to call it again
