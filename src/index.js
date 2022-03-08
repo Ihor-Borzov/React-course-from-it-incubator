@@ -12,12 +12,12 @@ import { Provider } from 'react-redux';   /* this is new Provider for store from
 
 
 /*############# EVERY LESSON SUMMARY:
-LESSON#63
-- create api folder. create api.js file in that folder
-- from UserContainer class=> method componentDidMount take axios request and move it to api.js
-- in the api.js create a function (call it getUsers) which will be returning axios request, export this function
-- import getUsers function to UsersContainer and call method then     getUsers.then
-- from the place where you invoke getUsers(parameters) send him all needed parameters 
+LESSON #64
+create in User-reducer in the initialState object a property followingInProgress:false
+create the whole pipe line to change the followingInProgress
+- disable button follow/unfollow while axios request is in progress using a property followingInProgress
+- you can see when you disable on e button, you disable all of them.  to change that - change the 
+followingInProgress property to array
 */
 
 
@@ -41,6 +41,13 @@ reportWebVitals();
 
 
 /*
+
+LESSON#63
+- create api folder. create api.js file in that folder
+- from UserContainer class=> method componentDidMount take axios request and move it to api.js
+- in the api.js create a function (call it getUsers) which will be returning axios request, export this function
+- import getUsers function to UsersContainer and call method then     getUsers.then
+- from the place where you invoke getUsers(parameters) send him all needed parameters 
 
 LESSON #51
 installed axios library: npm install axios --save

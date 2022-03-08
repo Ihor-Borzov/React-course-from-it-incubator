@@ -13,6 +13,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE="SET_CURRENT_PAGE"
 const SET_TOTAL_USERS_COUNT="SET_TOTAL_USERS_COUNT"
 const TOGGLE_IS_FETCHING="TOGGLE_IS_FETCHING"
+const TOGGLE_IS_FOLLOWING_PROGRESS="TOGGLE_IS_FOLLOWING_PROGRESS"
 
 
  let initialState = {                                                 /*  this is state to start the app - first run. each reducer we initialized with special value */
@@ -24,7 +25,9 @@ const TOGGLE_IS_FETCHING="TOGGLE_IS_FETCHING"
     pageSize:5,
     totalUserCount:1,
     currentPage:3,
-    isFetching:false
+    isFetching:false,
+    isProcessing:false,
+    followingInProgress:[]
 }
 
 
@@ -76,6 +79,15 @@ return {                                    /*  we opened and copied state, in t
               return{...state,
                 isFetching: action.isFetching
               }
+
+
+            case TOGGLE_IS_FOLLOWING_PROGRESS:
+              
+              return{...state,
+                followingInProgress: action.isFetching
+                ? [...state.followingInProgress, action.userId]   /* this is the way we add id to the end of the array  */
+                : state.followingInProgress.filter(id=>id!=action.userId)   /* this is the way we keep only Id's what do not match our id (this is the way we remove an ID). we do not do destructurisation here because method filter will return a new array by itself */
+              }
             
 
                 default:                   
@@ -104,6 +116,10 @@ export let setCurrentPage=(currentPage)=>({type:SET_CURRENT_PAGE, currentPage})
 export let setTotalUsersCount=(totALaUsersCount)=>({type:SET_TOTAL_USERS_COUNT, totALaUsersCount})
 
 export let toggleIsFetching=(isFetching)=>({type:TOGGLE_IS_FETCHING, isFetching})
+
+export let toggleFollowingProgress=(isFetching, userId)=>{
+  return({type:TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
+}
 
 
 

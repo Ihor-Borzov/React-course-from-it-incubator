@@ -40,23 +40,29 @@ return(
 </div>
 <div>
 {u.followed
-? <button onClick={()=>{
+? <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{
+    props.toggleFollowingProgress(true, u.id);
     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{withCredentials:true,
      headers:{"API-KEY":"f36a6a26-6367-4d7a-9af1-d75a40668f7f"}})
     .then((response)=>{
         if(response.data.resultCode ===0){props.unfollow(u.id)}
+        props.toggleFollowingProgress(false, u.id);
     })
+ 
 }} >  Unfollow  </button> 
 
 
-
-: <button onClick={()=>{
+/* if the statement is true we assign this attribute to a button if false we do not */
+: <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{
+    props.toggleFollowingProgress(true, u.id);
     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{withCredentials:true,
     headers:{"API-KEY":"f36a6a26-6367-4d7a-9af1-d75a40668f7f"}
 })
     .then((response)=>{
         if(response.data.resultCode ===0){props.follow(u.id)}
+        props.toggleFollowingProgress(false, u.id);
     })
+  
     }} >  Follow  </button>}
 
 </div>
@@ -83,3 +89,27 @@ return(
 }
 
 export default Users
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+let mytimeout = setTimeout(()=>{console.log(props.followingInProgress)
+
+    props.follow(u.id);
+    props.toggleFollowingProgress(false);
+},3000); */
