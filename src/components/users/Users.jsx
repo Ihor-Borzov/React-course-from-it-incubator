@@ -3,6 +3,7 @@ import styles from './users.module.css'
 import userPhoto from '../../assets/images/user.jpg'    /* this is the way we imported a picture */
 import { NavLink } from "react-router-dom"
 import axios from "axios"
+import { usersAPI } from "../../api/api"
 
 
 
@@ -41,28 +42,15 @@ return(
 <div>
 {u.followed
 ? <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{
-    props.toggleFollowingProgress(true, u.id);
-    axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{withCredentials:true,
-     headers:{"API-KEY":"f36a6a26-6367-4d7a-9af1-d75a40668f7f"}})
-    .then((response)=>{
-        if(response.data.resultCode ===0){props.unfollow(u.id)}
-        props.toggleFollowingProgress(false, u.id);
-    })
+props.unfollow(u.id);
  
 }} >  Unfollow  </button> 
 
 
 /* if the statement is true we assign this attribute to a button if false we do not */
 : <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={()=>{
-    props.toggleFollowingProgress(true, u.id);
-    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{},{withCredentials:true,
-    headers:{"API-KEY":"f36a6a26-6367-4d7a-9af1-d75a40668f7f"}
-})
-    .then((response)=>{
-        if(response.data.resultCode ===0){props.follow(u.id)}
-        props.toggleFollowingProgress(false, u.id);
-    })
-  
+ props.follow(u.id);
+
     }} >  Follow  </button>}
 
 </div>

@@ -1,11 +1,9 @@
 import React from "react"
 import { connect } from "react-redux"
-import { toggleFollowingProgress, follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unfollow } from "../../Redux/users-reducer"
-import * as axios from "axios"
+import { getUsers, toggleFollowingProgress, follow, setCurrentPage, unfollow } from "../../Redux/users-reducer"
 import Users from "./Users"
-import preLoaderGif from "../../assets/images/loader.gif"
 import Preloader from "../common/preloader/Preloader"
-import { getUsers, usersAPI } from "../../api/api"
+
 
 
 class UsersContainer extends React.Component {
@@ -17,25 +15,14 @@ class UsersContainer extends React.Component {
     
     
     componentDidMount(){
-        this.props.toggleIsFetching(true);
-            /* this is the way to make a server request through the function */
- usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items)
-            this.props.setTotalUsersCount(data.totalCount/100);
-        })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
     
     
     onPageChanged = (pageNumber)=>{
         this.props.setCurrentPage(pageNumber);
-        this.props.toggleIsFetching(true);
-        usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount/100);  /* i divide on 100, because it retrieve to many users */
-        })
-    }
+         this.props.getUsers(pageNumber, this.props.pageSize) 
+     }
     
     
     
@@ -83,7 +70,9 @@ let mapStateToProps = (state)=>{
 export default connect(mapStateToProps,
      {
 /* connect has the links to Action creators */
-    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount,
-toggleIsFetching, toggleFollowingProgress
+follow, unfollow,
+     setCurrentPage,
+ toggleFollowingProgress,
+getUsers,
 }
 )(UsersContainer);

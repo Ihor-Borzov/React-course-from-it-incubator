@@ -12,7 +12,7 @@ const instance = axios.create({
 /* here we created an object which will be containing all the needed axios requests from the Users component  */
 export const usersAPI = {  
   
-getUsers : (currentPage =1, pageSize=10)=>{
+getUsers : (currentPage =1, pageSize=6)=>{
     return(
        instance.get(`users?page=${currentPage}&count=${pageSize}`,     /* now we do request from our instance which is predeterminated */
        ).then((response)=>{
@@ -22,7 +22,22 @@ getUsers : (currentPage =1, pageSize=10)=>{
    
    
     )
-   }
+   },
+
+
+follow:(userId)=>{
+ return(   instance.post(`follow/${userId}`))
+},
+
+
+
+unfollow:(userId)=>{
+    return(
+        instance.delete(`follow/${userId}`)
+        )
+}
+
+
     
 }
 

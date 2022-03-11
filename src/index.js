@@ -12,12 +12,25 @@ import { Provider } from 'react-redux';   /* this is new Provider for store from
 
 
 /*############# EVERY LESSON SUMMARY:
-LESSON #64
-create in User-reducer in the initialState object a property followingInProgress:false
-create the whole pipe line to change the followingInProgress
-- disable button follow/unfollow while axios request is in progress using a property followingInProgress
-- you can see when you disable on e button, you disable all of them.  to change that - change the 
-followingInProgress property to array
+LESSON#66
+- create thunk function in user-reducer.js 
+- in to that thunk copy everything from the usersContainer=>componentDidMount
+ - substitute all the props to dispatch.
+ -wrap the thunk in getUsersThunkCreator - it will receive the parameters and return thunk
+ - install middleware "npm i redux-thunk"
+ import thunkMiddleware from "redux-thunk" in to redux-store.js file
+  - insert  applyMiddleware (thunkMiddleware) in redux createStore to enable to dispatch not only objects action, but also functions
+  -  import thunkCreator to the usersContainer and invoke it sending needed parameters to it
+  - in connect:
+  connect(stateDispatchToProps,{getUsersThunkCreator:(currentPage,PageSize)=>{dispatch(getUsersThunkCreator(currentPage,PageSize))}})
+  so the connect returns us a callback, when we invoke the function getUsersThunkCreator in th usersContainer we first invoke thunkCreator, it will return
+  us function and then we dispatch function, the function will get to dispatch and dispatch will see that this is the function, so he will 
+  understand that this is thunk and will invoke the function dispatching all the subfunctions,  subfunctions are action creators, so we invoke them, they return 
+  actions, actions will dispatch to reducer and change the state, component will rerender... and our thunk will continue to invoke the functions
+  down the road
+
+  - create thunk for render, follow, unfollow
+  - homework  substitute to thunk all the other axios requests
 */
 
 
@@ -41,6 +54,14 @@ reportWebVitals();
 
 
 /*
+
+
+LESSON #64
+create in User-reducer in the initialState object a property followingInProgress:false
+create the whole pipe line to change the followingInProgress
+- disable button follow/unfollow while axios request is in progress using a property followingInProgress
+- you can see when you disable on e button, you disable all of them.  to change that - change the 
+followingInProgress property to array
 
 LESSON#63
 - create api folder. create api.js file in that folder

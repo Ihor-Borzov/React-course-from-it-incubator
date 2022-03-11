@@ -1,10 +1,10 @@
-import { combineReducers, createStore } from "redux";
+import { applyMiddleware, combineReducers, createStore } from "redux";
 import authReducer from "./auth-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import UsersReducer from "./users-reducer";
-
+import thunkMiddleware from "redux-thunk"    /*  here we importing some middleware level */
 
 
 
@@ -19,7 +19,7 @@ let reducers = combineReducers({          /* Store needs reducers, because all t
 });
 
 
-let store = createStore(reducers);       /* to create new store, also all reducers give to store  */
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));       /* to create new store, also all reducers give to store  */
 
 
 

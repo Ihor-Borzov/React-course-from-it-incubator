@@ -4,6 +4,8 @@
       { id:3,  photoUrl:"https://i.pinimg.com/550x/17/e2/4a/17e24aab881fe2950c6121d729b859a3.jpg", followed:false, fullName:"Andrew", status:"I am a boss", location:{city:"Kyiv", country:"Ucraine"}},
  */
 
+import { usersAPI } from "../api/api";
+
 
 
 
@@ -24,7 +26,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS="TOGGLE_IS_FOLLOWING_PROGRESS"
      
     pageSize:5,
     totalUserCount:1,
-    currentPage:3,
+    currentPage:1,
     isFetching:false,
     isProcessing:false,
     followingInProgress:[]
@@ -99,9 +101,9 @@ return {                                    /*  we opened and copied state, in t
 
 
 
-export let follow = (userId) =>  ({ type:FOLLOW, userId });     /*AC is an action creator;  this is the way to write arrow function with return in one line */ 
+export let followSuccess = (userId) =>  ({ type:FOLLOW, userId });     /*AC is an action creator;  this is the way to write arrow function with return in one line */ 
 
-export let unfollow = (userId) =>  ({ type:UNFOLLOW, userId });
+export let unfollowSuccess = (userId) =>  ({ type:UNFOLLOW, userId });
 
 export let setUsers = (users) => {     /* we going to be taking users from a server and set them in to state */
   return{
@@ -125,6 +127,43 @@ export let toggleFollowingProgress=(isFetching, userId)=>{
 
 
 
+
+/* getUsers IS a THUNK CREATOR */
+export const getUsers = (currentPage, pageSize)=>{    /* thunk creator intended to receive parameters and return thunk. so thunk will have those parameters by closure */
+ return( (dispatch)=>{                 /* and here we return thunk */
+  dispatch(toggleIsFetching(true));
+usersAPI.getUsers(currentPage, pageSize).then(data => {
+  dispatch(toggleIsFetching(false));
+  dispatch(setUsers(data.items))
+  dispatch(setTotalUsersCount(data.totalCount/100))
+})})}
+
+
+export const follow = (userId)=>{
+  return(
+    (dispatch)=>{
+      dispatch(toggleFollowingProgress(true, userId))
+      usersAPI.follow(userId)
+         .then((response)=>{
+             if(response.data.resultCode ===0){dispatch(followSuccess(userId))}
+             dispatch(toggleFollowingProgress(false, userId))
+         })
+    }
+  )
+}
+
+export const unfollow = (userId)=>{
+  return(
+    (dispatch)=>{
+      dispatch(toggleFollowingProgress(true, userId))
+      usersAPI.unfollow(userId)
+      .then((response)=>{
+          if(response.data.resultCode ===0){dispatch(unfollowSuccess(userId))}
+          dispatch(toggleFollowingProgress(false, userId))
+      })
+    }
+  )
+}
 
 
 
