@@ -29,7 +29,7 @@ class UsersContainer extends React.Component {
         render(){
             return (
             <>  {/* this is just a tag (fake patch) */}
-            {this.props.isFetching ?  <Preloader/> : null}
+            {this.props.isFetching ?  <Preloader/> : null}   {/*  this fetching if working while everything is rendering on the page */}
 
             <Users  totalUsersCount = {this.props.totalUsersCount}
               pageSize={this.props.pageSize}  

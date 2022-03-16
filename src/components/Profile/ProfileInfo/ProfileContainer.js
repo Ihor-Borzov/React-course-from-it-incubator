@@ -2,8 +2,9 @@ import React from 'react';
 import Profile from '../Profile';
 import { connect } from 'react-redux';
 import * as axios from "axios"
-import {setUserProfile} from "../../../Redux/profile-reducer"
+import {getUserProfile} from "../../../Redux/profile-reducer"
 import { useMatch } from 'react-router-dom';
+import { usersAPI } from '../../../api/api';
 
 
 
@@ -22,11 +23,8 @@ class ProfileContainer extends React.Component{
         if(!this.props.match){userId=2}
         else{userId = this.props.match.params.userId} 
         
+        this.props.getUserProfile(userId) /* this is thunk */
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+ userId)
-        .then(response => { 
-            this.props.setUserProfile (response.data);
-        })      
     }   
 
 render(){
@@ -46,7 +44,7 @@ profile:state.profilePage.profile
 }
 
 
-
+/* this functional component does one thing: it catches user id in the url if it isw there!  */
 const ProfileMatch = (props)=>{
     let match = useMatch("/profile/:userId");
     return(
@@ -54,7 +52,7 @@ const ProfileMatch = (props)=>{
     )
 }
 
-export default connect (mapStateToProps, {setUserProfile}) (ProfileMatch)
+export default connect (mapStateToProps, {getUserProfile}) (ProfileMatch)
 
 
 

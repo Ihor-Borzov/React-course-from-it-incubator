@@ -1,3 +1,4 @@
+import { usersAPI } from "../api/api";
 
 
 const ADD_POST = 'ADD_POST';
@@ -78,7 +79,13 @@ export let setUserProfile = (profile) => {
 
 
 
-
+/* thunk */
+export const getUserProfile = (userId)=>{
+  return((dispatch)=>{
+    usersAPI.getProfile(userId).then((response)=>{
+      dispatch(setUserProfile (response))})
+  })
+}
 
 
 
