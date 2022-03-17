@@ -38,7 +38,8 @@ render(){
 
 let mapStateToProps = (state)=>{
     return({
-profile:state.profilePage.profile
+profile:state.profilePage.profile,
+isAuth:state.auth.isAuth
     }
     )
 }

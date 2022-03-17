@@ -15,7 +15,8 @@ second functions object will be callback functions*/
 
 let mapStateToProps =(state)=>{
 return{
-dialogsPage:state.dialogsPage
+dialogsPage:state.dialogsPage,
+isAuth:state.auth.isAuth
 }
 }
 
