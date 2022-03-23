@@ -8,8 +8,7 @@ import { Navigate } from 'react-router-dom';
 
 
 const Profile = (props)=>{
-    /* this is the way we perform redirect. if we did not log in => redirect */
-    if(!props.isAuth){return<Navigate to={"/login"}/>}
+
    
 return(
 <div className={s.postsBlock}>

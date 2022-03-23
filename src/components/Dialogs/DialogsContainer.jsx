@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 
@@ -16,7 +18,6 @@ second functions object will be callback functions*/
 let mapStateToProps =(state)=>{
 return{
 dialogsPage:state.dialogsPage,
-isAuth:state.auth.isAuth
 }
 }
 
@@ -53,7 +54,18 @@ so in the Dialogs you will get props.a props.b
 
 */
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);    
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+// let AuthRedirectComponent = (props)=>{
+//   /* this is the way we perform redirect. if we did not log in => redirect */
+//   if(!props.isAuth){return<Navigate to={"/login"}/>}
+// return  <Dialogs {...props}/>
+// }
+
+
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);    
 
 
 
