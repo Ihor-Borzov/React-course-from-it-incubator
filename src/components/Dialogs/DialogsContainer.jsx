@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
@@ -55,7 +56,7 @@ so in the Dialogs you will get props.a props.b
 */
 
 
-let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
 
 // let AuthRedirectComponent = (props)=>{
 //   /* this is the way we perform redirect. if we did not log in => redirect */
@@ -65,11 +66,17 @@ let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
 
 
-const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);    
+ 
 
 
 
 
+export default compose(
+  connect(mapStateToProps,mapDispatchToProps),
+  withAuthRedirect,
+)(Dialogs)
 
 
-export default DialogsContainer;
+//let AuthRedirectComponent = withAuthRedirect(Dialogs)
+//const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);
+//export default DialogsContainer;
