@@ -2,6 +2,7 @@ import React from 'react';
 import userPhoto from '../../../assets/images/user.jpg' 
 import Preloader from '../../common/preloader/Preloader';
 import s from "./ProfileInfo.module.css";
+import ProfileStatus from "./ProfileStatus"
 
 
 const ProfileInfo = (props) => {
@@ -29,6 +30,8 @@ if(!props.profile){
                 : "https://i.natgeofe.com/k/d987f7b2-1895-4978-9216-3f365ea51a34/ladybug-daisy_4x3.jpg"
                 }></img>
 
+
+<ProfileStatus status={"Hello my friends"}/>
                 </div>
 
         </div>

@@ -26,7 +26,7 @@ class ProfileContainer extends React.Component{
         if(!this.props.match){userId=2}
         else{userId = this.props.match.params.userId} 
         
-        this.props.getUserProfile(userId) /* this is thunk */
+        this.props.getUserProfile(userId) /* this is thunk.      asynchronous server request */
 
     }   
 
