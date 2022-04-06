@@ -30,8 +30,8 @@ if(!props.profile){
                 : "https://i.natgeofe.com/k/d987f7b2-1895-4978-9216-3f365ea51a34/ladybug-daisy_4x3.jpg"
                 }></img>
 
-
-<ProfileStatus status={"Hello my friends"}/>
+<div>  {props.profile.aboutMe}  </div>
+<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 </div>
 
         </div>

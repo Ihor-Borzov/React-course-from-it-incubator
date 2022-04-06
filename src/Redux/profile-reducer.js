@@ -1,9 +1,10 @@
-import { usersAPI } from "../api/api";
+import { profileAPI, usersAPI } from "../api/api";
 
 
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 
 
@@ -13,7 +14,8 @@ const SET_USER_PROFILE = "SET_USER_PROFILE";
         {id:2, message:'it is my first post', likesCount:11},
     ],
 newPostText:'it-camasutra.com',
-profile: null
+profile: null,
+status:"",
 }
 
 
@@ -49,6 +51,14 @@ profile: null
                     ...state,
                     profile: action.profile
                   }
+
+                  case SET_STATUS:
+                    return{
+                      ...state,
+                      status: action.status
+                    }
+
+
                 
                 default:                    /* this is default case - will work when no cases matched */
                     return state;
@@ -77,6 +87,13 @@ export let setUserProfile = (profile) => {
   }
 }
 
+export let setStatus=(status)=>{
+  return{
+    type:SET_STATUS,
+    status
+  }
+}
+
 
 
 /* thunk */
@@ -87,6 +104,24 @@ export const getUserProfile = (userId)=>{
   })
 }
 
+
+/* thunk - because we have server request we have to use thunk */
+export const getStatus = (userId)=>{
+  return((dispatch)=>{
+    profileAPI.getStatus(userId).then((response)=>{
+      dispatch(setStatus (response.data))})
+  })
+}
+
+
+
+export const updateStatus = (status)=>{
+  return((dispatch)=>{
+    profileAPI.updateStatus(status).then((response)=>{
+if(response.data.resultCode===0){dispatch(setStatus (status))}
+      })
+  })
+}
 
 
 

@@ -38,16 +38,50 @@ unfollow:(userId)=>{
 },
 
 getProfile:(userId)=>{
+    console.warn("obsolete method. Please use profileAPI object")
+    return( profileAPI.getUser(userId)
+
+ 
+    )
+} 
+}
+
+
+
+
+export const profileAPI={
+    getUser:(userId)=>{
     return(
         instance.get(`profile/ ${userId}`)
         .then((response)=>{
             return(response.data)})
     )
+},
+
+
+getStatus:(userId)=>{
+return(
+    instance.get(`profile/status/ ${userId}`)
+)
+},
+
+updateStatus:(status)=>{
+    return(
+        instance.put(`profile/status/`, {status:status})
+    )
+}
 }
 
 
-    
-}
+
+
+
+
+
+
+
+
+
 
 export const authAPI = {
 me:()=>{return(

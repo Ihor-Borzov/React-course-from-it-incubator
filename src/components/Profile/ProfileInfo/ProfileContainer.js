@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from '../Profile';
 import { connect } from 'react-redux';
 import * as axios from "axios"
-import {getUserProfile} from "../../../Redux/profile-reducer"
+import {getUserProfile, getStatus, updateStatus} from "../../../Redux/profile-reducer"
 import { Navigate, useMatch } from 'react-router-dom';
 import { usersAPI } from '../../../api/api';
 import { withAuthRedirect } from '../../../HOC/withAuthRedirect';
@@ -25,14 +25,14 @@ class ProfileContainer extends React.Component{
         let userId
         if(!this.props.match){userId=2}
         else{userId = this.props.match.params.userId} 
-        
-        this.props.getUserProfile(userId) /* this is thunk.      asynchronous server request */
 
+        this.props.getUserProfile(userId) /* this is thunk.      asynchronous server request */
+     this.props.getStatus(userId)
     }   
 
 render(){
     return(
-<Profile   {...this.props}  />
+<Profile   {...this.props} status={this.props.status} updateStatus = {this.props.updateStatus} />
     )
 }
 
@@ -44,6 +44,7 @@ render(){
 let mapStateToProps = (state)=>{
     return({
 profile:state.profilePage.profile,
+status:state.profilePage.status
     }
     )
 }
@@ -59,7 +60,7 @@ profile:state.profilePage.profile,
 
 /* we changed all those method calls with one function compose */
 export default compose(
-    connect (mapStateToProps, {getUserProfile}),
+    connect (mapStateToProps, {getUserProfile, getStatus, updateStatus}),
     urlMatch,
     withAuthRedirect,
 )(ProfileContainer)
