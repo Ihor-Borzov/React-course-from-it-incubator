@@ -86,8 +86,12 @@ updateStatus:(status)=>{
 export const authAPI = {
 me:()=>{return(
     instance.get("auth/me")
-)}
+)},
 
+
+login:(data)=>{
+    instance.post('auth/login',{...data})
+}
 
 }
 

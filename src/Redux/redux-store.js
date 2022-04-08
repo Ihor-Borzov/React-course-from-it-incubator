@@ -5,6 +5,7 @@ import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import UsersReducer from "./users-reducer";
 import thunkMiddleware from "redux-thunk"    /*  here we importing some middleware level */
+import {reducer as formReducer} from 'redux-form'
 
 
 
@@ -16,6 +17,7 @@ let reducers = combineReducers({          /* Store needs reducers, because all t
     sidebarPage: sidebarReducer,
     usersPage:UsersReducer,
     auth:authReducer,                 /* we do not specify page, because this is not a page - this is logic  */
+form:formReducer,
 });
 
 
