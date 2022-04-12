@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_BODY = "UPDATE_NEW_MESSAGE_BODY"
 const SEND_MESSAGE = "SEND_MESSAGE"
 
 
@@ -25,8 +24,8 @@ let initialState = {
           {id:5,name:'Victor'},
           {id:6,name:'Valera'},
         ],
-
-        newMessageBody:""
+/* 
+        newMessageBody:"" */
 }
 
 
@@ -39,17 +38,17 @@ let initialState = {
 const dialogsReducer = (state = initialState, action)=>{
    let stateCopy;
     switch(action.type){
-        case UPDATE_NEW_MESSAGE_BODY:
-          return {...state, newMessageBody:action.body };     /* create the object fill it with old vales add new and update new values and right away return it! */
+       /*  case UPDATE_NEW_MESSAGE_BODY:
+          return {...state, newMessageBody:action.body };  */    /* create the object fill it with old vales add new and update new values and right away return it! */
 
 
     
 
             case SEND_MESSAGE:
              
-              let body = state.newMessageBody;
+              let body = action.newMessageBody;
               return {...state,
-                newMessageBody:'',
+                
                 messagesData:[...state.messagesData, {id:0,  message:body}]};              /*  we are simply saying: hey stateCopy you have messages object,but this object is just a link to the object from state now, can you actually reassign it to a real object!  */
          
                 default:
@@ -61,21 +60,15 @@ const dialogsReducer = (state = initialState, action)=>{
 }
 
 
-export let sendMessageCreator = () => {
+export let sendMessageCreator = (newMessageBody) => {
     return{
      type:SEND_MESSAGE,
-     
+     newMessageBody
     }
   }
   
   
-  export let updateNewMessageBodyCreator = (body) => {
-    return{
-     type:UPDATE_NEW_MESSAGE_BODY,
-     body:body,
-    }
-  }
-  
+
 
 
 

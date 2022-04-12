@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../Redux/dialogs-reducer';
+import { sendMessageCreator,} from '../../Redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 
 
@@ -26,8 +26,8 @@ dialogsPage:state.dialogsPage,
 /* here this function has dispatch which binded to store, so you can call dispatch an do not worry about anything */
 let mapDispatchToProps =(dispatch)=>{
     return{
-        updateNewMessageBody :(body)=>{dispatch(updateNewMessageBodyCreator(body));},
-        sendMessage : ()=>{dispatch(sendMessageCreator());}
+ 
+        sendMessage : (newMessageBody)=>{dispatch(sendMessageCreator(newMessageBody));}
     }
 }
 

@@ -20,8 +20,7 @@ postsText:state.profilePage.newPostText,
 
 let mapDispatchToProps = (dispatch)=>{
 return{
-  updateNewPostText:(text)=>{let action = updateNewPostTextActionCreator(text); dispatch(action);},
-  addPost:()=>{dispatch(addPostActionCreator());}
+  addPost:(text)=>{dispatch(addPostActionCreator(text));}
 }
 }
 

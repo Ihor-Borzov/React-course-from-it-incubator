@@ -2,7 +2,6 @@ import { profileAPI, usersAPI } from "../api/api";
 
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
 
@@ -29,21 +28,18 @@ status:"",
         case ADD_POST:
             let newPost={
                 id:5,
-                message:state.newPostText,       
+                message:action.text,       
                 likesCount:0
               };
 
-              return {...state,  postsData:[...state.postsData, newPost],  newPostText : ""  };     /* this is  the way we duplicate our state with spread operator  this is  the way we duplicate our state.array with spread operator, why ?   because when we duplicating an object with spread operator we duplicating only primitives, but arrays and objects will copy only the links - so when you change them in new object you will get those changes in the old object  */
+              return {...state,  postsData:[...state.postsData, newPost]  };     /* this is  the way we duplicate our state with spread operator  this is  the way we duplicate our state.array with spread operator, why ?   because when we duplicating an object with spread operator we duplicating only primitives, but arrays and objects will copy only the links - so when you change them in new object you will get those changes in the old object  */
              /*  stateCopy.postsData = [...state.postsData];                  
               stateCopy.postsData.push(newPost);
               stateCopy.newPostText = "";
               return stateCopy; */
             
             
-              case UPDATE_NEW_POST_TEXT:
-                return{...state, newPostText:action.newText};
-           /*      stateCopy.newPostText = action.newText;
-                return stateCopy; */
+             
 
 
                 case SET_USER_PROFILE:
@@ -69,15 +65,10 @@ status:"",
 
 
 
-export let addPostActionCreator = () =>  ({ type:ADD_POST });     /*  this is the way to write arrow function with return in one line */ 
+export let addPostActionCreator = (text) =>  ({ type:ADD_POST, text });     /*  this is the way to write arrow function with return in one line */ 
 
 
-export let updateNewPostTextActionCreator = (text) => {
-  return{
-   type:UPDATE_NEW_POST_TEXT,
-    newText:text
-  }
-}
+
 
 
 export let setUserProfile = (profile) => {
