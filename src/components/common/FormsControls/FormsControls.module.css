@@ -1,0 +1,18 @@
+
+.formControl input{
+    display:inline-block;
+    border:2px solid green
+}
+
+
+/* this is the way you nest class inside the class */
+.formControl.error input, 
+.formControl.error textarea
+{
+border: 3px solid red;
+}
+
+
+.formControl.error span{
+    color:red;
+}

@@ -2,11 +2,13 @@ import React from 'react';
 import { Field } from 'redux-form';
 import { reduxForm } from 'redux-form';
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/profile-reducer';
+import { maxLengthCreator, required } from '../../../utilities/validators';
+import { Input, TestComponent, Textarea } from '../../common/FormsControls/FormsControls';
 import s from "./MyPosts.module.css";
 import Post from './Post/Post';
 
 
-
+let maxLength10 = maxLengthCreator(10)
 
 
 
@@ -20,7 +22,6 @@ const MyPosts = (props) => {
 
 
 let onSubmit=(data)=>{
-  console.log(data.postText)
   props.addPost(data.postText);
 }
 
@@ -46,7 +47,7 @@ const MyPostsForm = (props)=>{
 return(
   <form onSubmit={props.handleSubmit}>
   <div> 
-           <Field  component="input" type="textarea" name="postText" />
+           <Field  component={Input} name="postText" validate={[required, maxLength10]}  placeholder="post message"/>
         </div>  
        <div> <button>Add post</button> </div>
         
@@ -59,6 +60,8 @@ return(
 let MyPostsReduxForm = reduxForm({form:"MyPostsForm"})(MyPostsForm)
 
 
+
+/* we called the function maxLength Creator right now when the page is rendering, and that function is closure, so we get back another function with needed us parameters */
 
 
 

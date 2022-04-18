@@ -1,6 +1,8 @@
 import React from "react"
 import { Field } from "redux-form"
 import { reduxForm } from "redux-form"
+import { required } from "../../utilities/validators"
+import { Input } from "../common/FormsControls/FormsControls"
 
 
 let Login = (props)=>{
@@ -21,8 +23,8 @@ let LoginForm = (props)=>{
     return(
 <form onSubmit={props.handleSubmit}>      {/* very important to process everything in form, also important to specify onSubmit event listener*/}
 
-<div><Field placeholder={"Login"} component={'input'} name={"login"}></Field></div>  {/* you have to specify what kind of component you are creating input you create */}
-<div><Field placeholder={"Password"} component={'input'} name={"password"}></Field></div>
+<div><Field placeholder={"Login"} component={Input} validate={[required]} name={"login"}></Field></div>  {/* you have to specify what kind of component you are creating input you create */}
+<div><Field placeholder={"Password"}  component={Input} validate={[required]} name={"password"}></Field></div>
 
 <div>
     <label>
