@@ -7,7 +7,7 @@ return(
     <header className={s.header}>
   <img src='https://www.conagrabrands.com/sites/g/files/qyyrlu371/files/conagra-logo-tm.png'/>
   <div className={s.loginBlock}>
-    {props.isAuth? props.login
+    {props.isAuth? <div> {props.login} <button onClick={props.logout} >Logout</button>  </div>
     :<NavLink to={"/login"}>
       Login
     </NavLink>}

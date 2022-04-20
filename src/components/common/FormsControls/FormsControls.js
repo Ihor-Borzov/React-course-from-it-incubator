@@ -65,7 +65,7 @@ const FormControl = ({input, meta, children, ...props})=>{
     return(
             <div className={`${styles.formControl} ${hasError? styles.error : "" }         ` }>
                 <div>
-                {props.children}
+                {children}
                 </div>
                {hasError &&  <span>{meta.error}</span>} 
             </div>
@@ -76,7 +76,7 @@ const FormControl = ({input, meta, children, ...props})=>{
 
 
 export const TestComponent = (props)=>{
-    //debugger
+
     const {input, meta, ...restProps} = props
     const hasError = meta.touched && meta.error
     return(
