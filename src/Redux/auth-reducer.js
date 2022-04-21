@@ -1,3 +1,4 @@
+import { stopSubmit } from "redux-form";
 import { authAPI } from "../api/api";
 
       const SET_USER_DATA = 'SET_USER_DATA';
@@ -64,6 +65,11 @@ authAPI.login(email, password, rememberMe).then((response)=>{
   if(response.data.resultCode===0){
     dispatch(getAuthUserData()) /* this is the way we dispatch (invoke) thunk from thunk */
   }
+
+  else{ 
+  let message =  response.data.messages.length > 0 ? response.data.messages[0] : "some error";
+  dispatch(stopSubmit("login", {_error:message}))}    /* this is action creator from redux-form. first parameter what form we stop  */
+
 })
   })
 
@@ -78,7 +84,6 @@ export const logout = ()=>{
       if(response.data.resultCode===0){
         dispatch(getAuthUserData());
         dispatch(setAuthUserData(null, null, null, false))} /* null all the properties */
-
     })
   }))
 }

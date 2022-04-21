@@ -37,6 +37,19 @@ reportWebVitals();
 
 
 /*
+LESSON#79 how to show error from the server response
+- whenever you send server request to login - you  may succeed or fail depends of the data (login, password) you specified.
+So if you succeed the server will return resultCode === 0 but if you failed the resultCode !=0
+- the response from server you receive in your thunk -  if(resultCode === 0){...}  else {you code to handle the failure}
+- if your component made from redux-form => you may handle the failure and show user that something is wrong by method stopSubmit()
+- aas the arguments you have to specify what is the name of your redux-form (you can get this name from  const LoginReduxForm = reduxForm({form:'login'})(LoginForm))
+and the second parameter is the Field name in your redux-form and what message you want to send to that field (the field is a tag or your upgraded
+  component) will receive this message in props.meta.error. 
+  - instead of sending this info to a field you can sand it to the wholl form as a common error, for that just specify at the field name (_error)
+- dispatch(stopSubmit("login", {_error:message}))
+  - 
+
+
 Lesson#77  Redux-Form validators:
 - to add a validator to redux-from first you have to  create a function Validator, this function receives input and returns undefined if everything
 is ok or returns a string with an error message if the value is invalid {you specify it with logic}.

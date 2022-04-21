@@ -6,7 +6,7 @@ import { Input, TestComponent } from "../common/FormsControls/FormsControls"
 import {login} from "../../Redux/auth-reducer"
 import { connect } from "react-redux"
 import { Navigate } from "react-router-dom"
-
+import style from '../common/FormsControls/FormsControls.module.css'
 
 let Login = (props)=>{
     const onSubmit = (formData)=>{
@@ -34,6 +34,7 @@ let Login = (props)=>{
 
 
 let LoginForm = (props)=>{
+
     return(
 <form onSubmit={props.handleSubmit}>      {/* very important to process everything in form, also important to specify onSubmit event listener*/}
 
@@ -46,6 +47,8 @@ let LoginForm = (props)=>{
     remember me
     </label>
     </div>
+
+{props.error && <div className = {style.form_summary_error}> Coorva mach ego: {props.error}</div>}
 
 <div><button > Submit </button></div> 
 

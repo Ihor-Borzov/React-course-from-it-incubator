@@ -23,7 +23,7 @@ class ProfileContainer extends React.Component{
     componentDidMount(){
 
         let userId
-        if(!this.props.match){userId=2}
+        if(!this.props.match){userId=this.props.AuthorizedUserId}
         else{userId = this.props.match.params.userId} 
 
         this.props.getUserProfile(userId) /* this is thunk.      asynchronous server request */
@@ -32,7 +32,9 @@ class ProfileContainer extends React.Component{
 
 render(){
     return(
-<Profile   {...this.props} status={this.props.status} updateStatus = {this.props.updateStatus} />
+<Profile   {...this.props}
+ status={this.props.status}
+  updateStatus = {this.props.updateStatus} />
     )
 }
 
@@ -44,7 +46,9 @@ render(){
 let mapStateToProps = (state)=>{
     return({
 profile:state.profilePage.profile,
-status:state.profilePage.status
+status:state.profilePage.status,
+AuthorizedUserId:state.auth.userId,
+isAuth:state.auth.isAuth
     }
     )
 }
