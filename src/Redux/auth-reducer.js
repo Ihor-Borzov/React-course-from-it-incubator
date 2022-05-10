@@ -46,6 +46,7 @@ import { authAPI } from "../api/api";
 export const getAuthUserData = ()=>{
   return(
     (dispatch)=>{
+      return(     /* this is the way we return promisse from our dispatch closure */
       authAPI.me().then(
         (response)=>{
             if(response.data.resultCode===0)
@@ -53,6 +54,8 @@ export const getAuthUserData = ()=>{
                 dispatch(setAuthUserData(id, email, login, true))}
         }
     )
+      )
+      
     }
   )
 }
@@ -90,3 +93,21 @@ export const logout = ()=>{
 
       
       export default authReducer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,10 +12,26 @@ import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import ProfileContainer from './components/Profile/ProfileInfo/ProfileContainer';
 import Settings from './components/Settings/Settings';
+import {initializeApp} from "./Redux/app-reducer"
 
 import UsersContainer from './components/users/UsersContainer';
+import { connect } from 'react-redux';
+import Preloader from './components/common/preloader/Preloader';
 
-const App = (props) => {
+class App extends React.Component {
+
+  componentDidMount=()=>{
+    //this.props.getAuthUserData()
+    this.props.initializeApp()
+  }
+
+  render=()=>{
+
+    if(!this.props.initialized){   /* show preloader if we are not  */
+      return <Preloader/>
+    }
+
+
 
   return (
     <div className="app-wrapper">
@@ -49,14 +65,22 @@ const App = (props) => {
       </BrowserRouter>
     </div>
   );
+  }
+}
+
+
+const mapStateToProps = (state)=>{
+  return({
+    initialized: state.app.initialized
+  })
 }
 
 
 
-export default App;
+export default connect (mapStateToProps,{initializeApp})(App) 
 
+/* exporting this will be the same as exporting app.js straight
+, because it is export default: does not matter how they will call your component when they will receive it - matters what you export.
+and i our case we export connect, what will render App.js. and connect will just provide some component wrapper for us */
+//export default App;
 
-/* path="/profile/:userId?/*" */
-
-
-//https://i.pinimg.com/originals/fb/79/82/fb79829be36f2c9a82035e26182558e3.jpg

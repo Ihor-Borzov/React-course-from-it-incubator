@@ -9,7 +9,7 @@ import { Navigate } from "react-router-dom"
 we simply invoke this function - expression in componentContainer.js file:
 let AuthRedirectComponent = withAuthRedirect(Dialogs)
 
-so it is invokes the function, sending her our Component, the function creates a class component, this class component inside the render method
+so it  invokes the function, sending her our Component, the function creates a class component, this class component inside the render method
 has needed logic. but our function returns this class component and assign it to AuthRedirectComponent.
 
 then invokes AuthRedirectComponent executing the logic inside it.
