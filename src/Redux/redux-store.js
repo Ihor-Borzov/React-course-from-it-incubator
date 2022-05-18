@@ -32,3 +32,7 @@ now we can get our store whenever we are */
 
 
 export default store;
+
+
+
+

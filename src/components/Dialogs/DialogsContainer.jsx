@@ -80,3 +80,18 @@ export default compose(
 //let AuthRedirectComponent = withAuthRedirect(Dialogs)
 //const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(AuthRedirectComponent);
 //export default DialogsContainer;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

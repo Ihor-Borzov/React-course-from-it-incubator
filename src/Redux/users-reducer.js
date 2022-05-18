@@ -128,11 +128,12 @@ export let toggleFollowingProgress=(isFetching, userId)=>{
 
 
 
-/* getUsers IS a THUNK CREATOR */
-export const getUsers = (currentPage, pageSize)=>{    /* thunk creator intended to receive parameters and return thunk. so thunk will have those parameters by closure */
+/* requestUsers IS a THUNK CREATOR */
+export const requestUsers = (page, pageSize)=>{    /* thunk creator intended to receive parameters and return thunk. so thunk will have those parameters by closure */
  return( (dispatch)=>{                 /* and here we return thunk */
   dispatch(toggleIsFetching(true));
-usersAPI.getUsers(currentPage, pageSize).then(data => {
+  //dispatch(setCurrentPage(page));
+usersAPI.getUsers(page, pageSize).then(data => {
   dispatch(toggleIsFetching(false));
   dispatch(setUsers(data.items))
   dispatch(setTotalUsersCount(data.totalCount/100))
