@@ -3,6 +3,7 @@ import userPhoto from '../../../assets/images/user.jpg'
 import Preloader from '../../common/preloader/Preloader';
 import s from "./ProfileInfo.module.css";
 import ProfileStatus from "./ProfileStatus"
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks"
 
 
 const ProfileInfo = (props) => {
@@ -31,7 +32,7 @@ if(!props.profile){
                 }></img>
 
 <div>  {props.profile.aboutMe}  </div>
-<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
                 </div>
 
         </div>
